@@ -26,9 +26,12 @@ export let JellyScroll = (function() {
             spinFactor: 150   // 1 mouse wheel spin = X pixels
         },
         touch: {
+            startVal: 0,
+            startTime: 0,
             curr: 0,          // current touch position
             prev: 0,          // previous touch position
-            touchFactor: 2    // rate touch speed => scroll speed
+            touchFactor: 1,    // rate touch speed => scroll speed
+            frictionInertia: 0.6
         },
         lastTime: 0,          // 
         maxSpeed: 15,         // max speed for animate skew
@@ -85,8 +88,27 @@ export let JellyScroll = (function() {
      */
     let convertTouchToScroll = function(delta){
         self.scroll.prev = self.scroll.curr;
-        self.scroll.curr += -delta*self.touch.touchFactor;
+        self.scroll.curr += -delta * self.touch.touchFactor * window.devicePixelRatio;
         verifyScrollLimits();
+    }
+
+    /**
+     * Check whether inertia is needed when touchend and create if necessary
+     * @param  {function} cb callback function
+     */
+    let checkTouchInertia = function(cb){
+        let deltaTimeTouch = Date.now() - self.touch.startTime;
+        let deltaValTouch = Math.abs(self.touch.curr) - Math.abs(self.touch.startVal);
+        console.log('deltaTimeTouch: ' + deltaTimeTouch + '  deltaValTouch: ' + deltaValTouch);
+        if( Math.abs(deltaValTouch) > deltaTimeTouch ){
+            let inertia = setInterval(function() {
+                convertTouchToScroll(deltaValTouch);
+                animateScrollTo();
+                deltaValTouch = deltaValTouch * self.touch.frictionInertia;
+                if( deltaValTouch < 10 ) clearInterval(inertia);
+            }, 16);
+        }
+        cb();
     }
 
     /**
@@ -98,7 +120,7 @@ export let JellyScroll = (function() {
             let speed = (self.scroll.curr - self.scroll.prev) / (e - self.lastTime);
             if(speed < -self.maxSpeed) speed = -self.maxSpeed;
             if(speed > self.maxSpeed) speed = self.maxSpeed;
-            if( self.state.isTouchMove ) speed = speed*3;
+            if( self.state.isTouchMove ) speed = speed*3; // magic const =)
             TweenLite.to(self.selectors.elements, 1,{
                 skewY: -speed*self.skewFactor,
                 overwrite: 5, // preexisting
@@ -139,6 +161,7 @@ export let JellyScroll = (function() {
         }
     }, 100);
 
+
     // HANDLERS ========================================================================================================
 
     /**
@@ -164,27 +187,37 @@ export let JellyScroll = (function() {
         })
     }
 
+    /**
+     * Add handler for touchmove
+     * @param {function} cb callback function
+     */
     let addHandlerTouch = function(cb){
         window.addEventListener('touchstart', function(e){
             if(!self.state.isTouchMove) self.state.isTouchMove = true;
+            self.touch.startTime = Date.now();
+            self.touch.startVal =  e.touches[0].screenY;
             self.touch.curr = e.touches[0].screenY;
         })
         window.addEventListener('touchmove', function(e){
             cb(e);
         })
         window.addEventListener('touchend', function(){
-            self.state.isTouchMove = false;
+            checkTouchInertia(function(){
+                self.state.isTouchMove = false;
+            })
         })      
     }
+
 
     // INIT ============================================================================================================
 
 
     // PUBLIC ==========================================================================================================
+    
     return Object.freeze({
         /**
          * Initialize jelly-scroll
-         * @param {object} options custom options ( if need )
+         * @param {object} options custom options ( if necessary )
          */
         init: function(options){
             // preparation

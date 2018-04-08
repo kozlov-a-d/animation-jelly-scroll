@@ -71,9 +71,7 @@ body{
     margin-top: 130px;
     margin-bottom: 130px;
     background: rgba(#000, 0.05); // transition: background .3s ease-out;
-    &:hover {
-        // background: rgba(rgb(0, 26, 255), 0.05);
-    }
+    
     @media (max-width: 1024px) {
         margin-top: 90px;
         margin-bottom: 90px;

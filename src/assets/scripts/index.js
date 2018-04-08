@@ -7,9 +7,12 @@ JellyScroll.init({
         elements: '.l-header, .l-main, .l-footer'
     },
     scroll: {
-        spinFactor: 150   // коэффициент, 1 вращение колёсика равняется Х пикселям
+        spinFactor: 150   // 1 mouse wheel spin = X pixels
     },
-    maxSpeed: 15,    // максимальная скорость
-    skewFactor: 0.2  // коэфициент превращения скорости в угол наклона
+    touch: {
+        touchFactor: 2    // rate touch speed => scroll speed
+    },
+    maxSpeed: 15,    // max speed for animate skew
+    skewFactor: 0.2  // rate scroll speed => skew angle
 });
 

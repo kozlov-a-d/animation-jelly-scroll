@@ -99,16 +99,20 @@ export let JellyScroll = (function() {
     let checkTouchInertia = function(cb){
         let deltaTimeTouch = Date.now() - self.touch.startTime;
         let deltaValTouch = Math.abs(self.touch.curr) - Math.abs(self.touch.startVal);
-        console.log('deltaTimeTouch: ' + deltaTimeTouch + '  deltaValTouch: ' + deltaValTouch);
+
         if( Math.abs(deltaValTouch) > deltaTimeTouch ){
             let inertia = setInterval(function() {
                 convertTouchToScroll(deltaValTouch);
                 animateScrollTo();
                 deltaValTouch = deltaValTouch * self.touch.frictionInertia;
-                if( deltaValTouch < 10 ) clearInterval(inertia);
+                if( deltaValTouch < 10 ) {
+                    clearInterval(inertia);
+                    cb();
+                }
             }, 16);
+        } else {
+            cb();
         }
-        cb();
     }
 
     /**
@@ -120,7 +124,7 @@ export let JellyScroll = (function() {
             let speed = (self.scroll.curr - self.scroll.prev) / (e - self.lastTime);
             if(speed < -self.maxSpeed) speed = -self.maxSpeed;
             if(speed > self.maxSpeed) speed = self.maxSpeed;
-            if( self.state.isTouchMove ) speed = speed*3; // magic const =)
+            if( self.state.isTouchMove ) speed = speed*2; // magic const =)
             TweenLite.to(self.selectors.elements, 1,{
                 skewY: -speed*self.skewFactor,
                 overwrite: 5, // preexisting

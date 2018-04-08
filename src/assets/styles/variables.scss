@@ -1,0 +1,67 @@
+// GLOBAL ------------------------------------------------------------------------------*/
+
+$mobile-view: 980px;
+$media-xs: 320px; // iphone5 в портретной ориентации
+$media-sm: 480px; // большине телефоны  в портретной ориентации + запас
+$media-md: 768px; // планшеты в портретной ориентации / телефоны в альбомной
+$media-lg: 1024px; // планшеты в альбомной ориентации
+$media-xl: 1280px; // ширина контента широкого сайта ( 1170 например )
+$content-width: 960px; // ширина контена
+$content-gap: 20px; // боковой отступ контента ( на адаптиве )
+
+
+// ANIMATIONS -------------------------------------------------------------------------------*/
+
+$translate-time: 0.3s;
+$translate-ease: ease;
+
+
+// FONTS -------------------------------------------------------------------------------*/
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500|Roboto');
+
+$font-main: 'Roboto', sans-serif; // основной шрифт
+$font-second: 'Montserrat', sans-serif; // дополнительный шрифт
+$font-size-base: 16px; // базовый размер шрифта
+$font-weight-base: 400;
+$line-height-base: 1.6; // базовый междустрочный интервал
+$text-margin: 20px; // отступ между элементами в тексте
+
+
+// COLORS -------------------------------------------------------------------------------*/
+
+$color-base: #383e41; // базовый цвет текста
+$color-base-invert: #fff; // инвертированый цвет текста
+$color-link: #0090cc; // цвет текстовых ссылок
+$color-hover: #006896; // цвет при ховере
+$color-active: $color-hover; // цвет для активных состояний
+$color-accent: #f82951; // цвет для элементов, на которых нужно акцентировать внимание (ошибки)
+$color-disable: #cdd1d3; // цвет нективных
+
+
+// HEADING -------------------------------------------------------------------------------*/
+
+$heading-h1-font: $font-main;
+$heading-h1-size: 50px;
+$heading-h1-height: 70px;
+$heading-h1-weight: 300;
+$heading-h1-align: left;
+$heading-h1-color: $color-base;
+
+$heading-h2-font: $font-main;
+$heading-h2-size: 36px;
+$heading-h2-height: 46px;
+$heading-h2-weight: 300;
+$heading-h2-align: left;
+$heading-h2-color: $color-base;
+
+$heading-h3-font: $font-main;
+$heading-h3-size: 24px;
+$heading-h3-height: 36px;
+$heading-h3-weight: 400;
+$heading-h3-align: left;
+$heading-h3-color: $color-base;
+
+// LISTS -------------------------------------------------------------------------------*/
+
+$list-padding-left: 40px;

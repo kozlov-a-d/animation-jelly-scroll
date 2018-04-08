@@ -1,0 +1,28 @@
+body .hidden{
+  display: none;
+  @media (max-width: $media-xl){
+    &-xl{
+      display: none;
+    }
+  }
+  @media (max-width: $media-lg){
+    &-lg{
+      display: none;
+    }
+  }
+  @media (max-width: $media-md){
+    &-md{
+      display: none;
+    }
+  }
+  @media (max-width: $media-sm){
+    &-sm{
+      display: none;
+    }
+  }
+  @media (max-width: $media-xs){
+    &-xs{
+      display: none;
+    }
+  }
+}

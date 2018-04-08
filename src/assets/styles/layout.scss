@@ -1,0 +1,31 @@
+.l-wrapper,
+.l-main,
+.l-header,
+.l-footer{
+  width: 100%;
+  position: relative;
+}
+.l-wrapper{
+  flex: 1 0 auto;
+  overflow: hidden;
+}
+.l-header{
+  z-index: 10;
+}
+.l-main{
+  z-index: 5;
+}
+.l-footer{
+  overflow: hidden;
+}
+.l-container{
+  max-width: $content-width;
+  margin: 0 auto;
+  @include cfix();
+  
+  @media (max-width: ( $content-width + $content-gap * 2 ) ) {
+    width: auto;
+    max-width: 100%;
+    margin: 0 $content-gap;
+  }
+}

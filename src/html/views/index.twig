@@ -1,0 +1,31 @@
+{% extends "../includes/layout.twig" %}
+
+{% block title %}animation-jelly-scroll{% endblock %} 
+{% block meta_description %}Animation effect on scroll using custom scroll script{% endblock %} 
+
+{% block body_class %}jelly{% endblock %} 
+{% block helper_container_class %}js-jelly-scroll{% endblock %} 
+
+{% block main %}
+ <main class="l-main main">
+    <div class="l-container">
+
+        {% for i in 1..6 %}
+        <div class="jelly-text-block {% if i % 2 == 1 %} -left {% else %} -right {% endif %} ">
+            <div class="jelly-text-block__image">
+                <span><img src="assets/images/girl-{{ i }}.jpg" alt=""></span>
+            </div>
+            <div class="jelly-text-block__text">
+                <h2>Lorem ipsum dolor</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos repudiandae eveniet aspernatur tempore culpa nihil
+                    reprehenderit dolor hic nesciunt id repellendus consequatur similique molestias rerum suscipit quibusdam
+                    ratione dolores quis cupiditate placeat.</p>
+                <p class="hidden-lg">Lorem, ipsum dolor sit amet consectetur adipisicing elit. A quibusdam ullam exercitationem maiores dolore magnam,
+                    cumque dolorum distinctio commodi consequatur quisquam culpa?.</p>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</main>
+{% endblock %}

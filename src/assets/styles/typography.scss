@@ -1,0 +1,89 @@
+body {
+    font-family: $font-main;
+    font-size: $font-size-base;
+    font-weight: $font-weight-base;
+    line-height: $line-height-base;
+    color: $color-base;
+}
+
+h1 {
+    @if $heading-h1-font !=$font-main {
+        font-family: $heading-h1-font;
+    }
+    @if $heading-h1-color !=$color-base {
+        color: $heading-h1-color;
+    }
+    font-size: $heading-h1-size;
+    font-weight: $heading-h1-weight;
+    line-height: $heading-h1-height;
+    text-align: $heading-h1-align;
+    margin-bottom: $text-margin;
+    @media (max-width: $media-sm) {
+        font-size: $heading-h1-size/2;
+        line-height: $heading-h1-height/2;
+        font-weight: 400;
+    }
+}
+
+h2 {
+    @if $heading-h2-font !=$font-main {
+        font-family: $heading-h2-font;
+    }
+    @if $heading-h2-color !=$color-base {
+        color: $heading-h2-color;
+    }
+    font-size: $heading-h2-size;
+    font-weight: $heading-h2-weight;
+    line-height: $heading-h2-height;
+    text-align: $heading-h2-align;
+    margin-bottom: $text-margin;
+    @media (max-width: $media-sm) {
+        font-size: 25px;
+        line-height: 31px;
+        font-weight: 400;
+    }
+}
+
+h3 {
+    @if $heading-h3-font !=$font-main {
+        font-family: $heading-h3-font;
+    }
+    @if $heading-h3-color !=$color-base {
+        color: $heading-h3-color;
+    }
+    font-size: $heading-h3-size;
+    font-weight: $heading-h3-weight;
+    line-height: $heading-h3-height;
+    text-align: $heading-h3-align;
+    margin-bottom: $text-margin;
+}
+
+a {
+    color: $color-link;
+    transition: 0.2s;
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+p,
+ul,
+ol,
+table,
+pre,
+.grid {
+    margin: 0 0 $text-margin;
+}
+
+ul,
+ol {
+    padding-left: $list-padding-left;
+    li {
+        margin: 3px 0;
+    }
+}
+
+p+ul,
+p+ol {
+    margin-top: - $text-margin;
+}

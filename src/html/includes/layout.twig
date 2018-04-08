@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="format-detection" content="telephone=no">
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- Meta Tags -->
+    <meta name="description" content="{% block meta_description %}{% endblock %}">
+
+    <link rel="shortcut icon" href="assets/favicon/favicon.ico">
+    <link rel="stylesheet" href="assets/build/app.css">
+
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+    <div class="{% block helper_container_class %}{% endblock %}">
+        <div class="l-wrapper">
+        {% include './header.twig' %}
+            <div class="l-main">
+                {% block main %}
+                    Content of the page...
+
+                    <!-- Twig Documentation https://twig.symfony.com/doc/2.x/  -->
+                    {% for user in users %}
+                        <li>{{ user.username|e }}</li>
+                    {% endfor %}
+
+                    {% for i in 0..10 %}
+                        * {{ i }}
+                    {% endfor %}
+
+                    {% for letter in 'a'..'z' %}
+                        * {{ letter }}
+                    {% endfor %}
+
+                {% endblock %}
+            </div>
+        </div>
+        {% include './footer.twig' %}
+    </div>
+    <script src="assets/build/app.js"></script>
+</body>
+</html>

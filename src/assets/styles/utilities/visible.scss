@@ -1,0 +1,29 @@
+body .visible{
+  display: block;
+
+  @media (max-width: $media-xl){
+    &-xl{
+      display: block;
+    }
+  }
+  @media (max-width: $media-lg){
+    &-lg{
+      display: block;
+    }
+  }
+  @media (max-width: $media-md){
+    &-md{
+      display: block;
+    }
+  }
+  @media (max-width: $media-sm){
+    &-sm{
+      display: block;
+    }
+  }
+  @media (max-width: $media-xs){
+    &-xs{
+      display: block;
+    }
+  }
+}
